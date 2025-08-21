@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:13
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: telegram_bot
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  bot:
+    build: .
+    restart: always
+    environment:
+      BOT_TOKEN: "8377062410:AAEeA1bxjvck7Bps16UCasMjRniZnT2VvXc"
+      DATABASE_URL: "postgresql://postgres:password@db:5432/telegram_bot"
+    env_file:
+      - .env
+    depends_on:
+      - db
+    volumes:
+      - ./app:/app
+
+volumes:
+  pgdata:
