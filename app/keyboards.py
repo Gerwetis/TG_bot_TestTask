@@ -33,20 +33,3 @@ def file_type_inline_kb():
         ]
     )
     return kb
-
-
-def main_menu_kb():
-    return ReplyKeyboardMarkup(
-        keyboard=[
-            [KeyboardButton(text="Обробити файл")],
-            [KeyboardButton(text="Розлогінитись")]
-        ],
-        resize_keyboard=True
-    )
-
-
-def auth_kb():
-    return ReplyKeyboardMarkup(
-        keyboard=[[KeyboardButton(text="Ввести ключ")]],
-        resize_keyboard=True
-    )
